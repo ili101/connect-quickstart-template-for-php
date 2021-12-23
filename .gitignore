@@ -4,3 +4,4 @@ tmp/
 composer.phar
 coverage.xml
 *nogit*
+.phpunit.result.cache

@@ -1,22 +1,24 @@
-<phpunit bootstrap="vendor/autoload.php" verbose="true" stopOnError="true" stopOnFailure="true">
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">app</directory>
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="testdox-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="coverage-html" target="tmp/report" lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="coverage.xml"/>
-    </logging>
-    <listeners>
-        <listener class="\Mockery\Adapter\Phpunit\TestListener"
-                  file="vendor/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php">
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" verbose="true" stopOnError="true" stopOnFailure="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">app</directory>
+    </include>
+    <report>
+      <clover outputFile="coverage.xml"/>
+      <html outputDirectory="tmp/report" lowUpperBound="35" highLowerBound="70"/>
+    </report>
+  </coverage>
+  <logging>
+    <testdoxText outputFile="php://stdout"/>
+  </logging>
+  <listeners>
+    <listener class="\Mockery\Adapter\Phpunit\TestListener" file="vendor/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php">
         </listener>
-    </listeners>
-    <testsuites>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-        </testsuite>
-    </testsuites>
+  </listeners>
+  <testsuites>
+    <testsuite name="Feature">
+      <directory>tests/Feature</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

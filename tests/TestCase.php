@@ -11,7 +11,7 @@ namespace Test;
 use Connect\Config;
 use Test\Providers\MockServiceProvider;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends \Mockery\Adapter\Phpunit\MockeryTestCase
 {
     /**
      * The application tester
@@ -33,7 +33,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return void
      * @throws \Connect\ConfigException
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (!($this->app instanceof ApplicationTester)) {
             foreach ($this->providers as $key => $provider) {
